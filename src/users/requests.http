@@ -3,8 +3,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "chibbycat@mail.com",
-  "password": "chibbythecat"
+  "email": "nalacat@mail.com",
+  "password": "nalathecat"
 }
 
 ### SIGN-IN
@@ -21,6 +21,10 @@ content-type: application/json
 
 ### Check Current User
 GET http://localhost:3000/auth/whoami
+
+### Check Admin Status
+GET http://localhost:3000/auth/checkadmin
+
 
 ### SIGN-OUT
 POST http://localhost:3000/auth/signout

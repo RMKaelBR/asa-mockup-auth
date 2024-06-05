@@ -23,7 +23,7 @@ export class UsersService {
   find(email: string) {
     return this.repo.find({where: { email }});
   }
-
+ 
   async update(id: number, attributes: Partial<User>) {
     const user = await this.findOne(id);
     if (!user) {

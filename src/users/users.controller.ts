@@ -7,6 +7,8 @@ import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
+import { User } from './user.entity';
 
 @Serialize(UserDto)
 @Controller('auth')
@@ -18,9 +20,16 @@ export class UsersController {
 
   @Get('/whoami')
   @UseGuards(AuthGuard)
-  whoAmI(@CurrentUser() user: string) {
-    console.log("The user is:" + user);
+  whoAmI(@CurrentUser() user: User) {
+    // console.log("The user's id: " + user.id);
     return user;
+  }
+
+  @Get('/checkadmin')
+  @UseGuards(AdminGuard)
+  async checkAdmin(@CurrentUser() user: User) {
+    console.log(`The user of id ${user.id} has admin set to: ${user.admin}`);
+    return user.admin;
   }
 
   @Post('/signout')
