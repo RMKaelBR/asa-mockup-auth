@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
+import SqlDataSource from 'src/data-source';
 
 @Injectable()
 export class UsersService {
@@ -18,6 +19,14 @@ export class UsersService {
       return null;
     }
     return this.repo.findOneBy({id});
+  }
+
+  findOneDataSource(id: number) {
+    if (!id) {
+      return null;
+    }
+    return SqlDataSource.manager.findOneBy(User, {id});
+
   }
 
   find(email: string) {

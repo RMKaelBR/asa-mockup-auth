@@ -25,6 +25,17 @@ export class UsersController {
     return user;
   }
 
+  @UseGuards(AuthGuard)
+  @Get('/whoamidatasource')
+  async whoAmIDataSource(@CurrentUser() user: User) {
+    const dauser = await this.usersService.findOneDataSource(user.id);
+    
+    if(!dauser) {
+      throw new NotFoundException('user not found.');
+    }
+    return dauser;
+  }
+
   @Get('/checkadmin')
   @UseGuards(AdminGuard)
   async checkAdmin(@CurrentUser() user: User) {

@@ -3,8 +3,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "nalacat@mail.com",
-  "password": "nalathecat"
+  "email": "kuchicat@mail.com",
+  "password": "kuchithecat"
 }
 
 ### SIGN-IN
@@ -12,8 +12,8 @@ POST http://localhost:3000/auth/signin
 content-type: application/json
 
 {
-  "email": "nalacat@mail.com",
-  "password": "nalathecat" 
+  "email": "kuchicat@mail.com",
+  "password": "kuchithecat" 
 }
 
 # kuchicat@mail.com
@@ -22,9 +22,14 @@ content-type: application/json
 ### Check Current User
 GET http://localhost:3000/auth/whoami
 
+### Get the currently signed in User via Data Source Manager
+GET http://localhost:3000/auth/whoamidatasource
+
 ### Check Admin Status
 GET http://localhost:3000/auth/checkadmin
 
+### Get a User with provided id
+GET http://localhost:3000/auth/2
 
 ### SIGN-OUT
 POST http://localhost:3000/auth/signout

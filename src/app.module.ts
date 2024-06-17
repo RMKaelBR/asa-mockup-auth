@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { User } from './users/user.entity';
+import SqlDataSource from './data-source';
 const cookieSession = require('cookie-session')
 
 @Module({
@@ -15,17 +15,13 @@ const cookieSession = require('cookie-session')
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
     TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          type: 'sqlite',
-          database: config.get<string>('DB_NAME'),
-          entities: [User],
-          synchronize: true,
-        }
-      }
+      useFactory: async () => ({
+        ...SqlDataSource.options
+      })
     }),
-    UsersModule],
+    
+    UsersModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
@@ -34,7 +30,8 @@ const cookieSession = require('cookie-session')
       useValue: new ValidationPipe({
         whitelist: true
       })
-    }],
+    },
+  ],
 })
 export class AppModule {
   constructor(
