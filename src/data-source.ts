@@ -27,7 +27,7 @@ const dataSourceOptions : DataSourceOptions = process.env.NODE_ENV === 'producti
       synchronize: false,
       connectTimeoutMS: 30000,
       ssl: {
-        rejectUnauthorized: true, // Accepts any SSL certificate (you can make it stricter based on your security requirements)
+        rejectUnauthorized: false, // Accepts any SSL certificate (you can make it stricter based on your security requirements)
       },
     }
   : {
