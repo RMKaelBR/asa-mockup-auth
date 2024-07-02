@@ -6,7 +6,7 @@ async function bootstrap() {
   await SqlDataSource.initialize();
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: ['http://localhost:3001', 'https://asa-mockup.vercel.app'],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: 'Content-Type',
     credentials: true,

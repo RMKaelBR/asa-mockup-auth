@@ -1,5 +1,6 @@
 .env.development
 .env.test
+.env.production
 
 # compiled output
 /dist
